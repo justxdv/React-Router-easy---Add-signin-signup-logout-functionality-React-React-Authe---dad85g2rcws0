@@ -1,26 +1,15 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Home from "./pages/Home";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { Route, Routes, Switch } from "react-router";
+import { Home } from "./Pages/Home";
+import { Index } from "./Pages/Index";
+import { NotFound } from "./Pages/NotFound";
 
-const AppRoutes = () => {
-  const isLoggedIn = true; // you can use your own authentication logic here
-
+export const AppRoutes = () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Index />
-      </Route>
-      <Route exact path="/home">
-        <Home />
-      </Route>
-      <Route exact path="/not-found">
-        <NotFound />
-      </Route>
-      <Redirect to="/not-found" />
-    </Switch>
+    <Routes>
+      <Route path="/" exact element={<Index />} />
+      <Route path="/home" exact element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
-
-export default AppRoutes;
